@@ -1,0 +1,45 @@
+# Nombre que verás en la pestaña Actions de GitHub
+name: CI/CD Pipeline
+
+# Cuándo ejecutarse
+on:
+  push:
+    branches: [ main ]    # Al hacer git push
+  pull_request:
+    branches: [ main ]    # Al crear un Pull Request
+
+jobs:
+  test:
+    name: Instalar y verificar dependencias
+    runs-on: ubuntu-latest  # Corre en un servidor Linux gratuito de GitHub
+
+    steps:
+      # Paso 1: Descargar tu código
+      - name: Descargar código
+        uses: actions/checkout@v3
+
+      # Paso 2: Instalar Python 3.11
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Paso 3: Instalar las librerías
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      # Paso 4: Verificar que Flask importa bien
+      # (NO corremos app.py porque quedaría bloqueado esperando)
+      - name: Verificar que la app carga
+        run: python -c "import flask; print('Flask OK ✅')"
+
+  docker:
+    name: Validar Docker build
+    runs-on: ubuntu-latest
+    needs: test   # Solo si el job anterior pasó
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Construir imagen Docker
+        run: docker build -t mi-app-test .
