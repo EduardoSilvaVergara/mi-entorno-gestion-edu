@@ -1,8 +1,0 @@
-id,nombre,edad,ciudad,fecha_compra,monto,metodo_pago,errores_estructurales,errores_semanticos
-2,Maria Lopez,,Valparaiso,,15000.0,efectivo,"['Edad no es numérica', 'Fecha inválida']",
-3,Carlos Ruiz,30.0,santiago,,20000.0,transferencia,['Fecha inválida'],
-4,Ana Torres,28.0,Viña del Mar,2023-04-20,,tarjeta,['Monto no numérico'],
-8,,35.0,Santiago,2023-08-10,18000.0,tarjeta,['Nombre vacío'],
-9,Diego Soto,27.0,Valparaiso,,22000.0,transferencia,['Fecha inválida'],
-6,Luis Diaz,150.0,Santiago,2023-06-01,5000.0,efectivo,[],['Edad fuera de rango']
-7,Sofia Rojas,22.0,Viña Del Mar,2023-07-12,12000.0,debito,[],['Método de pago inválido']
